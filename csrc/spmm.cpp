@@ -34,12 +34,12 @@ int main(int argc, char *argv[]) {
       })
       .required();
   program.add_argument("-m", "--method")
-      .default_value(string("aot"))
+      .default_value(string("jit"))
       .action([](const string &value) {
         static const vector<string> choices = {"aot", "jit"};
         if (std::find(choices.begin(), choices.end(), value) != choices.end())
           return value;
-        return string("row");
+        return string("jit");
       })
       .required();
 
@@ -54,8 +54,7 @@ int main(int argc, char *argv[]) {
 
   // get input and output file names
   auto dataset = program.get<string>("-i");
-  auto ifn = "/mnt/raid0_ssd_8tb/qiang/SuiteSparse/" + dataset + "/" + dataset +
-             ".csrbin";
+  auto ifn = dataset;
   int64_t nfeat = program.get<int>("-f");
   auto impl = program.get<string>("--impl");
   auto method  = program.get<string>("-m");
@@ -65,6 +64,7 @@ int main(int argc, char *argv[]) {
   cout << "Feature size: " << nfeat << endl;
   cout << "Using: " << impl << endl;
   cout << "Run: " << run << endl;
+  cout << "Method: " << method << endl;
 
   SpMatCsr csr(ifn);
   float *feats = (float *)malloc(4 * nfeat * csr.ncol);

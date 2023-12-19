@@ -11,7 +11,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(argparse)
 
 find_package(OpenMP REQUIRED)
-find_package(MKL CONFIG REQUIRED)
 
 find_package(asmjit REQUIRED
     PATHS ${CMAKE_SOURCE_DIR}/third_party/asmjit/build/lib64/cmake/asmjit)
