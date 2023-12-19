@@ -12,7 +12,7 @@ Hardware
 ------
 x86 CPU with avx512 extension.
 
-Use command `lscpu` to check if your cpu support avx512 or not.
+Use command `lscpu` to check if your cpu supports avx512 or not.
 
 ----
 Build
