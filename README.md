@@ -18,7 +18,7 @@ Use command `lscpu` to check if your cpu support avx512 or not.
 Build
 ------
 ```bash
-git submodule init
+git submodule update --init --recursive
 mkdir -p third_party/asmjit/build/ && cd third_party/asmjit/build/
 cmake -G Ninja ..
 cmake --build .
@@ -42,6 +42,8 @@ To run JitSpMM on other dataset, please download the mtx file from [SuiteSparse 
 ```bash
 ./mm_to_csrbin -i [input .mtx file] -o [output .csrbin file]
 ```
+
+Run `./spmm -h` to see more options.
 
 ----
 Reference

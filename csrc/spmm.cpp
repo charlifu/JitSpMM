@@ -18,12 +18,15 @@ int main(int argc, char *argv[]) {
   program.add_argument("-f", "--feat-len")
       .default_value(16)
       .required()
-      .scan<'d', int>();
+      .scan<'d', int>()
+      .help("column size of the input dense matrix");
   program.add_argument("-r", "--run")
       .default_value(10)
       .required()
-      .scan<'d', int>();
-  program.add_argument("-p", "--prof").default_value(false).implicit_value(true);
+      .scan<'d', int>()
+      .help("iteration time");
+  program.add_argument("-p", "--prof").default_value(false).implicit_value(true)
+      .help("using perf to profile or not");
   program.add_argument("--impl")
       .default_value(string("row"))
       .action([](const string &value) {
@@ -32,7 +35,8 @@ int main(int argc, char *argv[]) {
           return value;
         return string("row");
       })
-      .required();
+      .required()
+      .help("choose different workload assignment method");
   program.add_argument("-m", "--method")
       .default_value(string("jit"))
       .action([](const string &value) {
@@ -41,7 +45,8 @@ int main(int argc, char *argv[]) {
           return value;
         return string("jit");
       })
-      .required();
+      .required()
+      .help("using aot or jit");
 
   // parse the arguments
   try {
