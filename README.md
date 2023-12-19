@@ -18,6 +18,12 @@ Use command `lscpu` to check if your cpu support avx512 or not.
 Build
 ------
 ```bash
+git submodule init
+mkdir -p third_party/asmjit/build/ && cd third_party/asmjit/build/
+cmake -G Ninja ..
+cmake --build .
+cmake --install . --prefix .
+cd -
 mkdir -p ./build && cd build
 cmake -G Ninja ..
 cmake --build .
